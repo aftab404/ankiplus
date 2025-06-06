@@ -17,7 +17,6 @@ app.post("/translate", async (req, res) => {
     try {
         const text = req.body.data;
         console.log(text)
-        console.log(process.env.DEEPL_API_KEY)
         const response = await fetch("https://api-free.deepl.com/v2/translate", {
         method: "POST",
         headers: {

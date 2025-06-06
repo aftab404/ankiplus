@@ -4,23 +4,30 @@ const translate = setTimeout(async () => {
     const back = inputs[1]
     let debounceTimer;
     front.addEventListener("input", async (e) => {
+        const frontText = front.innerText.trim()
+        if(frontText === "") {
+            back.innerText = ""
+            clearInterval(debounceTimer)
+            return
+        }
         clearTimeout(debounceTimer);
         debounceTimer = setTimeout(async () => {
 
-        const response = await fetch("http://localhost:3000/translate", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ data: front.innerText }) 
-        })
+            const response = await fetch("http://localhost:3000/translate", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ data: front.innerText })
+            })
 
-        const data = await response.json()
-        console.log(data)
-        back.innerText = data["translations"][0]["text"]
+            const data = await response.json()
+            console.log(data)
+            back.innerText = data["translations"][0]["text"]
 
-        const event = new Event("input", { bubbles: true })
-        back.dispatchEvent(event)
+            const event = new Event("input", { bubbles: true })
+            back.dispatchEvent(event)
         }, 1000)
-    })
+    }
+    )
 }, 500)
