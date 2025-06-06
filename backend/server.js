@@ -1,5 +1,8 @@
 const express = require("express")
 const cors = require("cors")
+const dotenv = require("dotenv")
+
+dotenv.config()
 
 const app = express()
 
@@ -14,10 +17,11 @@ app.post("/translate", async (req, res) => {
     try {
         const text = req.body.data;
         console.log(text)
+        console.log(process.env.DEEPL_API_KEY)
         const response = await fetch("https://api-free.deepl.com/v2/translate", {
         method: "POST",
         headers: {
-            "Authorization": "DeepL-Auth-Key 5526158a-3b09-4d05-a7ba-1b94e9afd7fb:fx",
+            "Authorization": "DeepL-Auth-Key " + process.env.DEEPL_API_KEY,
             "Content-Type": "application/json"
         },
         body: JSON.stringify({

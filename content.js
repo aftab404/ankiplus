@@ -16,7 +16,7 @@ const translate = setTimeout(async () => {
         })
 
         const data = await response.json()
-        console.log(data["translations"][0]["text"])
+        console.log(data)
         back.innerText = data["translations"][0]["text"]
 
         const event = new Event("input", { bubbles: true })
