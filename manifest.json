@@ -2,13 +2,16 @@
     "manifest_version": 3,
     "name": "AnkiPlus",
     "version": "1.0",
-    "permissions": ["activeTab", "scripting"],
+    "permissions": ["activeTab", "scripting", "storage"],
     "host_permissions": ["https://ankiweb.net/*"],
     "content_scripts": [
       {
         "matches": ["https://ankiweb.net/edit/*", "https://ankiuser.net/edit/*", "https://ankiuser.net/add"],
         "js": ["content.js"]
       }
-    ]
+    ],
+    "action": {
+      "default_popup": "popup.html"
+    }
   }
   

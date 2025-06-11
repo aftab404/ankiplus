@@ -16,6 +16,7 @@ app.get("/", (req, res) => {
 app.post("/translate", async (req, res) => {
     try {
         const text = req.body.data;
+        const src = req.body.src;
         console.log(text)
         const response = await fetch("https://api-free.deepl.com/v2/translate", {
         method: "POST",
@@ -25,7 +26,8 @@ app.post("/translate", async (req, res) => {
         },
         body: JSON.stringify({
             text: [text],
-            target_lang: "en"
+            target_lang: "en",
+            source_lang: src
         })})
         const data = await response.json()
         res.send(data)
