@@ -19,7 +19,7 @@ const translate = setTimeout(async () => {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ data: front.innerText, src: "de" })
+                body: JSON.stringify({ data: front.innerText})
             })
 
             const data = await response.json()
